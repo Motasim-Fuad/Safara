@@ -282,7 +282,7 @@ class _HomeScreenState extends State<HomeScreen> {
         index: _selectedIndex,
         items: const [
           Icon(Icons.home, color: Colors.white),
-          Icon(Icons.favorite, color: Colors.white),
+          Icon(Icons.card_giftcard, color: Colors.white),
           Icon(Icons.person, color: Colors.white),
         ],
         onTap: (index) {
@@ -302,7 +302,7 @@ class _HomeScreenState extends State<HomeScreen> {
           }
 
           if (index == 1) {
-            var sn= SnackBar(content: Text("We are still working it"));
+            var sn= SnackBar(content: Text("We are still working it now !"));
             ScaffoldMessenger.of(context).showSnackBar(sn);
           }
 
