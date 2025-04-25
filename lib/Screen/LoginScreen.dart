@@ -236,7 +236,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     onTap: () {
                       var sn= SnackBar(content: Text("We are working on it. Don't worry !"));
                       ScaffoldMessenger.of(context).showSnackBar(sn);
-                      print("Apple login");
+                      print("Apple login....");
                     },
                   ),
                 ],
