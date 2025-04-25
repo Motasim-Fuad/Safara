@@ -113,6 +113,17 @@ class _HomeScreenState extends State<HomeScreen> {
                       suffixIcon: TextButton(
                         onPressed: () {
                           _controller.clear();
+
+                          setState(() {
+                            selectedCategory = 'All';
+                            filteredCities = place_list;
+                            _controller.clear();
+                          });
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            HomeScreen.ro,
+                                (route) => false,
+                          );
                         },
                         child: Icon(Icons.clear),
                       ),
@@ -277,6 +288,11 @@ class _HomeScreenState extends State<HomeScreen> {
               HomeScreen.ro,
                   (route) => false,
             );
+          }
+
+          if (index == 1) {
+            var sn= SnackBar(content: Text("We are still working it"));
+            ScaffoldMessenger.of(context).showSnackBar(sn);
           }
 
           if (index == 2) {
