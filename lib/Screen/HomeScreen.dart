@@ -148,7 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
             // Categories Section with Direct Selection
             Padding(
               padding: EdgeInsets.symmetric(vertical: screenHeight * 0.02),
-              child: Text("Popular Categories", style: TextStyle(fontSize: screenWidth * 0.05)),
+              child: Text("Popular Categories", style: TextStyle(fontSize: 30)),
             ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: screenHeight * 0.02),
@@ -214,7 +214,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Explore ", style: TextStyle(fontSize: screenWidth * 0.07)),
+                  Text("Explore ", style: TextStyle(fontSize: 30)),
                   Row(
                     children: [
                       Text("All  "),
@@ -253,7 +253,7 @@ class _HomeScreenState extends State<HomeScreen> {
             // Popular Categories Section
             Padding(
               padding: EdgeInsets.symmetric(vertical: screenHeight * 0.02),
-              child: Text("Our Services", style: TextStyle(fontSize: screenWidth * 0.05)),
+              child: Text("Our Services", style: TextStyle(fontSize: 25)),
             ),
 
             // Categories with Circular Buttons
