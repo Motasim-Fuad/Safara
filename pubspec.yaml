@@ -39,7 +39,7 @@ dependencies:
   font_awesome_flutter: ^10.5.0
   curved_navigation_bar: ^1.0.3
   google_sign_in: ^6.3.0
-  get: ^4.7.2
+  url_launcher: ^6.3.1
 
 dev_dependencies:
   flutter_test:

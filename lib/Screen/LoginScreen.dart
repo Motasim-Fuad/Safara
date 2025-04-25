@@ -34,30 +34,33 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
+
+
   // Google Auth Start
   Future<void> _singInWithGoogle() async{
     final GoogleSignIn googleSignIn =GoogleSignIn();
 
     try{
       final GoogleSignInAccount ? googleSingInAccount=await googleSignIn.signIn();
+      if (googleSingInAccount != null) {
+        final GoogleSignInAuthentication googleAuth =
+        await googleSingInAccount.authentication;
 
-      if( googleSingInAccount != null){
-        final GoogleSignInAuthentication googleSignInAuthentication = await googleSingInAccount.authentication;
-
-        final AuthCredential credential =GoogleAuthProvider.credential(
-          idToken: googleSignInAuthentication.idToken,
-          accessToken: googleSignInAuthentication.accessToken,
+        final AuthCredential credential = GoogleAuthProvider.credential(
+          idToken: googleAuth.idToken,
+          accessToken: googleAuth.accessToken,
         );
 
-        await _auth.signInWithCredential(credential);
+        await FirebaseAuth.instance.signInWithCredential(credential);
         Navigator.of(context).pushNamed(HomeScreen.ro);
-
       }
 
     }catch(e){
       debugPrint(e.toString());
       var sn =SnackBar(content: Text(e.toString()));
       ScaffoldMessenger.of(context).showSnackBar(sn);
+
+      debugPrint("google auth error is :$e",);
     }
   }
   // Google auth end
@@ -202,10 +205,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
 
-              const SizedBox(height: 20),
-              const Divider(),
+
+
               const SizedBox(height: 10),
 
+              Text("or",style: TextStyle(color: Colors.grey),),
+              const Divider(),
+              const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -228,6 +234,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     icon: FontAwesomeIcons.apple,
                     iconColor: Colors.black,
                     onTap: () {
+                      var sn= SnackBar(content: Text("We are working on it. Don't worry !"));
+                      ScaffoldMessenger.of(context).showSnackBar(sn);
                       print("Apple login");
                     },
                   ),

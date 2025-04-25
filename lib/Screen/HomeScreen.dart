@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:safara/Screen/GetStartScreen.dart';
 import 'package:safara/Widgets/circulerIconBtn.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 import '../Model/Place.dart';
 import '../Widgets/catagoryBtn.dart';
 import '../Widgets/coustom_card.dart';
@@ -23,13 +25,16 @@ class _HomeScreenState extends State<HomeScreen> {
   String selectedCategory = 'All';
   List<Place> filteredCities = place_list;
 
+
+
+
   @override
   void initState() {
     super.initState();
     filteredCities = place_list;
   }
 
-  // Method to filter cities based on the search query
+  //  search query
   void filterCities(String query) {
     setState(() {
       if (query.isEmpty) {
@@ -43,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  // Method to filter cities based on selected category
+  //  selected category
   void filterCategory(String category) {
     setState(() {
       if (category == 'All') {
@@ -66,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // App bar section with responsive padding
+            // App bar section
             SafeArea(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
@@ -81,11 +86,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Welcome back !", style: TextStyle(fontSize: 15)),
-                        Text("Emma Arif", style: TextStyle(fontSize: 25)),
+                        Text("Motasim Fuad", style: TextStyle(fontSize: 25)),
                       ],
                     ),
                     Spacer(),
-                    IconButton(onPressed: () {}, icon: Icon(Icons.send)),
+                    IconButton(onPressed: () {
+
+                    }, icon: Icon(Icons.send)),
                     IconButton(
                       splashRadius: 150,
                       splashColor: Colors.grey,
@@ -98,7 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             SizedBox(height: 10),
 
-            // Search bar with dynamic width
+            // Search bar
             Padding(
               padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
               child: Column(
@@ -139,6 +146,10 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
 
             // Categories Section with Direct Selection
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: screenHeight * 0.02),
+              child: Text("Popular Categories", style: TextStyle(fontSize: screenWidth * 0.05)),
+            ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: screenHeight * 0.02),
               child: Row(
@@ -203,7 +214,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Explore Cities", style: TextStyle(fontSize: screenWidth * 0.05)),
+                  Text("Explore ", style: TextStyle(fontSize: screenWidth * 0.07)),
                   Row(
                     children: [
                       Text("All  "),
@@ -242,7 +253,7 @@ class _HomeScreenState extends State<HomeScreen> {
             // Popular Categories Section
             Padding(
               padding: EdgeInsets.symmetric(vertical: screenHeight * 0.02),
-              child: Text("Popular Categories", style: TextStyle(fontSize: screenWidth * 0.05)),
+              child: Text("Our Services", style: TextStyle(fontSize: screenWidth * 0.05)),
             ),
 
             // Categories with Circular Buttons

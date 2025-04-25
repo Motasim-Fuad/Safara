@@ -12,7 +12,20 @@
           "package_name": "com.safara.safara"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "655081648854-5c6rnsf5mahsg99i7hthmrhi3k4a8r7a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.safara.safara",
+            "certificate_hash": "1e3de21b2d49e1115d35525a20cd863dd8cbd67a"
+          }
+        },
+        {
+          "client_id": "655081648854-ckk25nvu07t3iltedgd6na60g4p96ofp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDjw0_S-06Dovlzg7OBOKgdC20NM8HL2q8"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "655081648854-ckk25nvu07t3iltedgd6na60g4p96ofp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "655081648854-st7sq45to2u3kcjnog96ritr09dpaq8s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.safara.safara"
+              }
+            }
+          ]
         }
       }
     }

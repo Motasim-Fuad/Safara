@@ -88,12 +88,12 @@ double getResponsiveHeight(BuildContext context) {
     return height * 0.75;
   } else if (width >= 400) {
 
-    return height * 0.7;
+    return height * 0.53;
   } else if (width >= 300) {
 
-    return height * 0.6;
+    return height * 0.46;
   } else {
 
-    return height * 0.5;
+    return height * 0.4;
   }
 }
