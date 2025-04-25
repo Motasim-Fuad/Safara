@@ -7,6 +7,8 @@ import 'package:safara/Screen/SingupScreen.dart';
 import 'package:safara/Screen/SplashScreen.dart';
 import 'Screen/GetStartScreen.dart';
 import 'Screen/HomeScreen.dart';
+import 'Screen/PhoneNumberAuth/loginWithPhone.dart';
+import 'Screen/PhoneNumberAuth/veryfiy_code.dart';
 import 'firebase_options.dart';
 
 void main() async{
@@ -34,6 +36,7 @@ class MyApp extends StatelessWidget {
          GetstartScreen.ro:(context)=>GetstartScreen(),
          LoginScreen.ro:(context)=>LoginScreen(),
          Singupscreen.ro:(context)=>Singupscreen(),
+         Loginwithphone.ro:(context)=>Loginwithphone(),
        },
 
     );

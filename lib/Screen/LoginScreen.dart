@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:safara/Screen/HomeScreen.dart';
+import 'package:safara/Screen/PhoneNumberAuth/loginWithPhone.dart';
 import 'package:safara/Screen/SingupScreen.dart';
 import 'package:safara/Widgets/RoundedButton.dart';
 import '../Widgets/circulerIconBtn.dart';
@@ -212,6 +213,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     icon: FontAwesomeIcons.phone,
                     iconColor: Colors.green,
                     onTap: () {
+                      Navigator.of(context).pushNamed(Loginwithphone.ro);
                       print("Phone login");
                     },
                   ),
