@@ -2,10 +2,9 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:safara/Screen/Card_Screen.dart';
 import 'package:safara/Screen/GetStartScreen.dart';
 import 'package:safara/Widgets/circulerIconBtn.dart';
-import 'package:url_launcher/url_launcher.dart';
-
 import '../Model/Place.dart';
 import '../Widgets/catagoryBtn.dart';
 import '../Widgets/coustom_card.dart';
@@ -24,6 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final _auth = FirebaseAuth.instance;
   String selectedCategory = 'All';
   List<Place> filteredCities = place_list;
+  List<Place> cartItems = [];
 
 
 
@@ -61,6 +61,51 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  // show dialog
+
+  void _showCardDialog(BuildContext context, Place place) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(place.title),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Image.asset(place.imgurl, height: 300, width: 300),
+              SizedBox(height: 10),
+              Text('Country: ${place.country}'),
+              Text('Price: \$${place.price}'),
+              Text('Rating: ${place.rating}'),
+              Text('Category: ${place.category}'),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Close'),
+            ),
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  cartItems.add(place);
+                });
+                Navigator.of(context).pop();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('${place.title} added to your cart')),
+                );
+              },
+              child: Text('Add to Cart'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -78,7 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Row(
                   children: [
                     CircleAvatar(
-                      radius: 30, // optional: adjust size
+                      radius: 30,
                       backgroundImage: AssetImage('assets/profile.jpg'),
                     ),
                     SizedBox(width: 10),
@@ -145,7 +190,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
 
-            // Categories Section with Direct Selection
+            // Categories Section
             Padding(
               padding: EdgeInsets.symmetric(vertical: screenHeight * 0.02),
               child: Text("Popular Categories", style: TextStyle(fontSize: 30)),
@@ -208,13 +253,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
 
 
-            // Explore Cities Section
+            // Explore Destination Section
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Explore ", style: TextStyle(fontSize: 30)),
+                  Text("Explore Destination", style: TextStyle(fontSize: 30)),
                   Row(
                     children: [
                       Text("All  "),
@@ -230,7 +275,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
 
-            // Horizontal List of Cities - with responsive width and height adjustments
+
             SizedBox(
               height:getResponsiveHeight(context),
               child: ListView.builder(
@@ -238,13 +283,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 itemCount: filteredCities.length,
                 itemBuilder: (context, index) {
-                  final city = filteredCities[index];
+                  final place = filteredCities[index];
                   return CustomCard(
-                    imageUrl: city.imgurl,
-                    title: city.title,
-                    price: city.price,
-                    rating: city.rating,
-                    countryName: city.country,
+                    imageUrl: place.imgurl,
+                    title: place.title,
+                    price: place.price,
+                    rating: place.rating,
+                    countryName: place.country,
+                    onTap: (){
+                      _showCardDialog(context, place);
+                    },
                   );
                 },
               ),
@@ -256,7 +304,6 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Text("Our Services", style: TextStyle(fontSize: 25)),
             ),
 
-            // Categories with Circular Buttons
             Padding(
               padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
               child: Row(
@@ -282,7 +329,7 @@ class _HomeScreenState extends State<HomeScreen> {
         index: _selectedIndex,
         items: const [
           Icon(Icons.home, color: Colors.white),
-          Icon(Icons.card_giftcard, color: Colors.white),
+          Icon(Icons.shopping_cart, color: Colors.white),
           Icon(Icons.person, color: Colors.white),
         ],
         onTap: (index) {
@@ -291,6 +338,7 @@ class _HomeScreenState extends State<HomeScreen> {
             selectedCategory = 'All';
             filteredCities = place_list;
             _controller.clear();
+
           });
 
           if (index == 0) {
@@ -302,8 +350,10 @@ class _HomeScreenState extends State<HomeScreen> {
           }
 
           if (index == 1) {
-            var sn= SnackBar(content: Text("We are still working it now !"));
-            ScaffoldMessenger.of(context).showSnackBar(sn);
+            Navigator.of(context).pushNamed(
+              CardScreen.ro,
+              arguments: cartItems,
+            );
           }
 
           if (index == 2) {

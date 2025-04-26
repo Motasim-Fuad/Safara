@@ -2,9 +2,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:safara/Screen/Card_Screen.dart';
 import 'package:safara/Screen/LoginScreen.dart';
 import 'package:safara/Screen/SingupScreen.dart';
 import 'package:safara/Screen/SplashScreen.dart';
+import 'Model/Place.dart';
 import 'Screen/GetStartScreen.dart';
 import 'Screen/HomeScreen.dart';
 import 'Screen/PhoneNumberAuth/loginWithPhone.dart';
@@ -37,6 +39,11 @@ class MyApp extends StatelessWidget {
          LoginScreen.ro:(context)=>LoginScreen(),
          Singupscreen.ro:(context)=>Singupscreen(),
          Loginwithphone.ro:(context)=>Loginwithphone(),
+         CardScreen.ro: (context) {
+           final places = ModalRoute.of(context)!.settings.arguments as List<Place>;
+           return CardScreen(places: places);
+         },
+
        },
 
     );
